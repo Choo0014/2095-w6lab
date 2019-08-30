@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const url = 'mongodb://localhost:27017/';
 let db = null;
 
-
+//Connecting to MongoDB
 MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
     if (err) {
         console.log('Err  ', err);
