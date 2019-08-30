@@ -1,0 +1,48 @@
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+img {
+    margin-left: 15px;
+    /* background-color: bisque; (didn't work)*/
+}
+
+html{
+    background-color: bisque;
+}
+
+/* body {
+    background-color: bisque;
+} */
+
+h1 {
+    margin-left: 15px;
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    color: blueviolet;
+    background-color: bisque;
+}
+
+h3 {
+    margin-left: 15px;
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    color: blueviolet;
+    background-color: bisque;
+}
+
+#Submit1 {
+    margin-left: 15px;
+}
+
+#homeAddTask {
+    margin-left: 15px;
+    
+}
+
+#homeListTask {
+    margin-left: 15px;
+    
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List All Tasks</title>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="week5lab.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <a class="btn btn-warning btn-lg" href="/">Home</a>
+    <a a class="btn btn-info btn-lg" href="/addTask" role="button">Add Tasks</a>
+
+    <h1> List of Tasks</h1>
+    </br>
+    <!-- <h3>The tasks are:
+        <table>
+            <tr>
+                <td>Task Name</td>
+                <td>Task Due date</td>
+                <td>Task Description</td>
+            </tr>
+            <% for ( var i =0; i< taskDb.length;i++){ %>
+            <tr>
+                <td>
+                    <%= taskDb[i].taskName %>
+                </td>
+                <td>
+                    <%= taskDb[i].taskDue %>
+                </td>
+                <td>
+                    <%= taskDb[i].taskDesc %>
+                </td>
+            </tr>
+            <% }%>
+    </h3> -->
+    <h3>The tasks are:</h3>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Task Name</th>
+                <th scope="col">Task Due date</th>
+                <th scope="col">Task Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for ( var i =0; i< taskDb.length;i++){ %>
+            <tr>
+                <td><%= taskDb[i].taskName %></td>
+                <td><%= taskDb[i].taskDue %></td>
+                <td><%= taskDb[i].taskDesc %></td>
+            </tr>
+            <% }%>
+        </tbody>
+    </table>
+</body>
+
+</html>
