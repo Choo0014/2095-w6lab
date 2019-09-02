@@ -20,25 +20,50 @@
 
     <h1>Add a new task below</h1>
 
-    <form action="/formTask" method="POST">
-        <div class="form-group col-md-5">
+<!--Form starts-->    
+    <form action="/formTask" method="POST">             
+
+ <!--Task Name-->       
+        <div class="form-group col-md-5">               
             <label for="inputTaskName">Task Name</label>
             <input type="text" name="newTask" class="form-control" id="inputTaskName" aria-describedby="taskNameHelp"
                 placeholder="Enter task name">
             <small id="taskNameHelp" class="form-text text-muted">Examples: Task123 ,Dinner, 1!2@3#......</small>
         </div>
-        <div class="form-group col-md-5">
+
+<!--Who will do the task-->
+        <div class="form-group col-md-5">               
+            <label for="inputInCharge">Person in charge</label>
+            <input type="text" name="newInCharge" class="form-control" id="inputInCharge" aria-describedby="taskInChargeHelp"
+                placeholder="Enter the person in charge of this task">
+        </div>
+
+<!--Task Due Date-->
+        <div class="form-group col-md-5">               
             <label for="inputDueDate">Task Due</label>
             <input type="text" name="newDue" class="form-control" id="inputDueDate" aria-describedby="taskDueDateHelp"
                 placeholder="Enter the date">
         </div>
-        <div class="form-group col-md-5">
+
+<!--Task Description-->
+        <div class="form-group col-md-5">               
             <label for="inputTaskDesc">Task Desc</label>
             <input type="text" name="newDesc" class="form-control" id="inputTaskDesc" aria-describedby="taskDescHelp"
                 placeholder="Enter the description">
         </div>
-        <button type="submit" class="btn btn-dark" id="Submit1">Submit</button>
-    </form>
+
+<!--Task Status-->
+        <div class="form-group col-md-5">               
+            <label for="inputTaskStatus">Task Status</label>
+            <input type="text" name="newStatus" class="form-control" id="inputTaskStatus" aria-describedby="taskStatusHelp"
+                placeholder="Select the Status">
+        </div>
+
+<!--Task Submit button-->
+        <button type="submit" class="btn btn-dark" id="Submit1">Submit</button> 
+
+    </form>                                            
+<!--Form ends-->
 
     <!-- <form action="/formTask" method="POST">
         Task Name <input type="text" name = "newTask"/></br>

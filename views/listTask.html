@@ -47,16 +47,20 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Task Name</th>
+                <th scope="col">Person In Charge</th>
                 <th scope="col">Task Due date</th>
                 <th scope="col">Task Description</th>
+                <th scope="col">Task Status</th>
             </tr>
         </thead>
         <tbody>
             <% for ( var i =0; i< taskDb.length;i++){ %>
             <tr>
                 <td><%= taskDb[i].taskName %></td>
-                <td><%= taskDb[i].taskDue %></td>
+                <td><%= taskDb[i].taskPersonInCharge %></td>
+                <td><%= taskDb[i].taskDueDate %></td>
                 <td><%= taskDb[i].taskDesc %></td>
+                <td><%= taskDb[i].taskStatus %></td>
             </tr>
             <% }%>
         </tbody>

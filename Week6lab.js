@@ -5,6 +5,7 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const morgan = require('morgan');
 const url = 'mongodb://localhost:27017/';
+
 let db = null;
 
 //Connecting to MongoDB
@@ -17,40 +18,41 @@ MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
     }
 });
 
-router.get('/', function (req, res) { //home page
+//home page
+router.get('/', function (req, res) { 
     res.sendFile(path2Views + '/index.html');
 });
 
-router.get('/addTask', function (req, res) { //adding task page
+//adding task page
+router.get('/addTask', function (req, res) { 
     res.sendFile(path2Views + '/addTask.html');
 });
 
+//getting input
 router.post('/formTask', function (req, res) {
+    //checking parameters in log
     console.log(req.body.newTask);
+    console.log(req.body.newInCharge);
     console.log(req.body.newDue);
     console.log(req.body.newDesc);
-
-    let newTaskName = req.body.newTask;
-    let newTaskDue = req.body.newDue;
-    let newTaskDesc = req.body.newDesc;
-
-    let obj = {
-        taskName: newTaskName,
-        taskDue: newTaskDue,
-        taskDesc: newTaskDesc
-    };
-    console.log("////////////////////////////////////////////////////");
-    console.log(obj);
-    db.push(obj);
-    //res.send('Your input has been saved.')
-    res.render("listTask.html", {
-        taskDb: db
+    console.log(req.body.newStatus);
+    
+    //Passing into MongoDB
+    db.collection("week6lab").insertOne({
+        taskName : req.body.newTask,
+        taskPersonInCharge : req.body.newInCharge,
+        taskDueDate : req.body.newDue,
+        taskDesc : req.body.newDesc,
+        taskStatus : req.body.newStatus
     });
+    res.redirect('/listTask');
 })
 
-router.get('/listTask', function (req, res) { //listing task page
-    res.render("listTask.html", {
-        taskDb: db
+//listing task page
+router.get('/listTask', function (req, res) { 
+
+    db.collection("week6lab").find({}).toArray(function (err, data) {
+        res.render('listTask.html', { taskDb: data });
     });
 
 });
