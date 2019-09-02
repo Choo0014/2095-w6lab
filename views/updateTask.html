@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Delete a Task</title>
+    <title>Update a Task</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="week6lab.css" />
@@ -15,23 +15,30 @@
         <a class="btn btn-warning btn-lg" href="/">Home</a>
         <a class="btn btn-primary btn-lg" id="homeAddTask" href="/addTask" role="button">Add a new task</a>
         <a class="btn btn-info btn-lg" href="/listTask" role="button">List tasks</a>
+        <a class="btn btn-danger btn-lg" id="homeDeleteTask" href="/deleteTask" role="button">Delete Task</a>
         <a class="btn btn-warning btn-lg" id="homeDelAllCompleted" href="/delAllCompleted" role="button">Delete All</a>
-        <a class="btn btn-success btn-lg" id="homeUpdateTask" href="/updateTask" role="button">Update Task</a>
     
         <h1>Delete a task below</h1>
 
         <!--Form starts-->    
-        <form action="/formDeleteTask" method="POST">             
+        <form action="/formUpdateTask" method="POST">             
 
-        <!--Delete by Task ID-->       
+        <!--Update by Task ID-->       
                <div class="form-group col-md-5">               
-                   <label for="inputDeleteById">Task ID</label>
-                   <input type="text" name="delTask" class="form-control" id="delTask" aria-describedby="delTaskHelp"
+                   <label for="inputUpdateById">Task ID</label>
+                   <input type="text" name="updateTask" class="form-control" id="updateTask" aria-describedby="updateTaskHelp"
                        placeholder="Enter task id">
                </div>
-
+               <div class="form-group col-md-5">
+                    <label class="mr-sm-2" for="inputTaskStatus">Task Status</label>
+                    <select class="custom-select mr-sm-2" name="newStatus" id="newStatus">
+                    <option selected>Choose...</option>
+                    <option value="InProgress">InProgress</option>
+                    <option value="Complete">Complete</option>
+                    </select>
+                </div>
                <!--Task Submit button-->
-                <button type="submit" class="btn btn-dark" id="Submit2">Submit</button> 
+                <button type="submit" class="btn btn-dark" id="Submit3">Submit</button> 
         </form>                                            
         <!--Form ends-->
 </body>

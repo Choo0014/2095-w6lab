@@ -3,10 +3,11 @@ const router = express.Router();
 const path2Views = __dirname + "/views";
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const TASKID = mongodb.ObjectID;
+
 const morgan = require('morgan');
 const url = 'mongodb://localhost:27017/';
 
+const OBJECTID = mongodb.ObjectID;
 let db = null;
 
 //Connecting to MongoDB
@@ -69,12 +70,57 @@ router.get('/deleteTask', function (req, res) {
 
 // getting input for ID
 router.post('/formDeleteTask', function (req, res) {
-    let taskDetails = req.body;
-    let filter = {ID: taskDetails.delTask }
-    db.collection('week6lab').deleteOne({filter});
+    let details = new OBJECTID(req.body.delTask);
+    console.log(details);
+    let filter = {
+        _id: details
+    }
+    console.log(filter);
+
+    db.collection('week6lab').deleteOne(filter);
     res.redirect('/listTask');
+
 });
 
+//delete all completed task page
+router.get('/delAllCompleted', function (req, res) {
+    res.sendFile(path2Views + '/delAllCompleted.html');
+});
 
+// getting input for ID
+router.post('/formDeleteAll', function (req, res) {
+    let details = req.body.delAll;
+    console.log(details);
+    let filter = {
+        taskStatus : details
+    }
+    console.log(filter);
 
+    db.collection('week6lab').deleteMany(filter);
+    res.redirect('/listTask');
+
+});
+
+//Update task page
+router.get('/updateTask', function (req, res) {
+    res.sendFile(path2Views + '/updateTask.html');
+});
+//updatting task by ID
+router.post('/formUpdateTask', function (req, res) {
+    let details = new OBJECTID(req.body.updateTask);
+    console.log(details);
+    let filter = {
+        _id: details
+    }
+    console.log(filter);
+    let theUpdate = {
+        $set: {
+            taskStatus: req.body.newStatus //db attribute: input from form
+        }
+    };
+
+    db.collection('week6lab').updateOne(filter, theUpdate);
+    res.redirect('/listTask');
+
+});
 module.exports = router;
