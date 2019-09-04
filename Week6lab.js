@@ -71,24 +71,27 @@ router.post('/formInsertMany', function (req, res) {
     let countNo = req.body.newInsertMany;
     let arrayMany = [];
 
-    let obj = {
-        taskName: req.body.newTask,
-        taskPersonInCharge: req.body.newInCharge,
-        taskDueDate: req.body.newDue,
-        taskDesc: req.body.newDesc,
-        taskStatus: req.body.newStatus
-    };
-    console.log("Object:" + obj);
+    // let obj = {
+    //     taskName: req.body.newTask,
+    //     taskPersonInCharge: req.body.newInCharge,
+    //     taskDueDate: req.body.newDue,
+    //     taskDesc: req.body.newDesc,
+    //     taskStatus: req.body.newStatus
+    // };
+    // console.log("Object:" + obj);
     for (let i = 0; i < countNo; i++) { //loop input x times
-        arrayMany.push({taskName: req.body.newTask,
+        arrayMany.push(
+            {taskName: req.body.newTask,
             taskPersonInCharge: req.body.newInCharge,
             taskDueDate: req.body.newDue,
             taskDesc: req.body.newDesc,
-            taskStatus: req.body.newStatus})
+            taskStatus: req.body.newStatus}
+            )
+            console.log("InloopArray:" + arrayMany);
 
     }
     console.log("Array:" + arrayMany);
-    db.collection("week6lab").insertMany(arrayMany);
+    db.collection("week6lab").insertMany(arrayMany); //passs in the array of objects
     res.redirect('/listTask');
 })
 
