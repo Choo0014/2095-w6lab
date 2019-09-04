@@ -52,6 +52,91 @@ router.post('/formTask', function (req, res) {
     res.redirect('/listTask');
 })
 
+//adding Insert Many page
+router.get('/insertMany', function (req, res) {
+    res.sendFile(path2Views + '/insertMany.html');
+});
+
+//Adding many tasks
+router.post('/formInsertMany', function (req, res) {
+    //checking parameters in log
+    console.log(req.body.newTask);
+    console.log(req.body.newInCharge);
+    console.log(req.body.newDue);
+    console.log(req.body.newDesc);
+    console.log(req.body.newInsertMany);
+    console.log(req.body.newStatus);
+
+    let taskname = req.body.newTask;
+    let taskInCharge = req.body.newInCharge;
+    let taskDue = req.body.newDue;
+    let taskDesc = req.body.newDesc;
+    let countNo = req.body.newInsertMany;
+    let taskStatus = req.body.newStatus;
+
+    let task1 ={
+        taskName: taskname,
+        taskPersonInCharge: taskInCharge,
+        taskDueDate: taskDue,
+        taskDesc: taskDesc,
+        taskStatus: taskStatus
+    }
+    let task2 ={
+        taskName: taskname,
+        taskPersonInCharge: taskInCharge,
+        taskDueDate: taskDue,
+        taskDesc: taskDesc,
+        taskStatus: taskStatus
+    }
+    let task3 ={
+        taskName: taskname,
+        taskPersonInCharge: taskInCharge,
+        taskDueDate: taskDue,
+        taskDesc: taskDesc,
+        taskStatus: taskStatus
+    }
+    if (countNo == 3){
+        db.collection("week6lab").insertMany([
+            {
+                taskName: taskname,
+                taskPersonInCharge: taskInCharge,
+                taskDueDate: taskDue,
+                taskDesc: taskDesc,
+                taskStatus: taskStatus
+            },
+            {
+                taskName: taskname,
+                taskPersonInCharge: taskInCharge,
+                taskDueDate: taskDue,
+                taskDesc: taskDesc,
+                taskStatus: taskStatus
+            },
+            {
+                taskName: taskname,
+                taskPersonInCharge: taskInCharge,
+                taskDueDate: taskDue,
+                taskDesc: taskDesc,
+                taskStatus: taskStatus
+            }
+
+        ]);
+    }else{
+         //Passing into MongoDB
+    db.collection("week6lab").insertOne({
+        taskName: req.body.newTask,
+        taskPersonInCharge: req.body.newInCharge,
+        taskDueDate: req.body.newDue,
+        taskDesc: req.body.newDesc,
+        taskStatus: req.body.newStatus
+    });
+
+    }
+
+   
+    res.redirect('/listTask');
+})
+
+
 //listing task page
 router.get('/listTask', function (req, res) {
 
