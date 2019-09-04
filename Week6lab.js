@@ -12,7 +12,8 @@ let db = null;
 
 //Connecting to MongoDB
 MongoClient.connect(url, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }, function (err, client) {
     if (err) {
         console.log('Err  ', err);
@@ -67,72 +68,27 @@ router.post('/formInsertMany', function (req, res) {
     console.log(req.body.newInsertMany);
     console.log(req.body.newStatus);
 
-    let taskname = req.body.newTask;
-    let taskInCharge = req.body.newInCharge;
-    let taskDue = req.body.newDue;
-    let taskDesc = req.body.newDesc;
     let countNo = req.body.newInsertMany;
-    let taskStatus = req.body.newStatus;
+    let arrayMany = [];
 
-    let task1 ={
-        taskName: taskname,
-        taskPersonInCharge: taskInCharge,
-        taskDueDate: taskDue,
-        taskDesc: taskDesc,
-        taskStatus: taskStatus
-    }
-    let task2 ={
-        taskName: taskname,
-        taskPersonInCharge: taskInCharge,
-        taskDueDate: taskDue,
-        taskDesc: taskDesc,
-        taskStatus: taskStatus
-    }
-    let task3 ={
-        taskName: taskname,
-        taskPersonInCharge: taskInCharge,
-        taskDueDate: taskDue,
-        taskDesc: taskDesc,
-        taskStatus: taskStatus
-    }
-    if (countNo == 3){
-        db.collection("week6lab").insertMany([
-            {
-                taskName: taskname,
-                taskPersonInCharge: taskInCharge,
-                taskDueDate: taskDue,
-                taskDesc: taskDesc,
-                taskStatus: taskStatus
-            },
-            {
-                taskName: taskname,
-                taskPersonInCharge: taskInCharge,
-                taskDueDate: taskDue,
-                taskDesc: taskDesc,
-                taskStatus: taskStatus
-            },
-            {
-                taskName: taskname,
-                taskPersonInCharge: taskInCharge,
-                taskDueDate: taskDue,
-                taskDesc: taskDesc,
-                taskStatus: taskStatus
-            }
-
-        ]);
-    }else{
-         //Passing into MongoDB
-    db.collection("week6lab").insertOne({
+    let obj = {
         taskName: req.body.newTask,
         taskPersonInCharge: req.body.newInCharge,
         taskDueDate: req.body.newDue,
         taskDesc: req.body.newDesc,
         taskStatus: req.body.newStatus
-    });
+    };
+    console.log("Object:" + obj);
+    for (let i = 0; i < countNo; i++) { //loop input x times
+        arrayMany.push({taskName: req.body.newTask,
+            taskPersonInCharge: req.body.newInCharge,
+            taskDueDate: req.body.newDue,
+            taskDesc: req.body.newDesc,
+            taskStatus: req.body.newStatus})
 
     }
-
-   
+    console.log("Array:" + arrayMany);
+    db.collection("week6lab").insertMany(arrayMany);
     res.redirect('/listTask');
 })
 
@@ -177,7 +133,7 @@ router.post('/formDeleteAll', function (req, res) {
     let details = req.body.delAll;
     console.log(details);
     let filter = {
-        taskStatus : details
+        taskStatus: details
     }
     console.log(filter);
 
