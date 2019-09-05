@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const router = require('./Week7lab.js');
+const router = require('./Week6lab.js');
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
